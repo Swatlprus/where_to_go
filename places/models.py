@@ -3,7 +3,6 @@ from django.db import models
 
 class Places(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название')
-    imgs = models.ImageField(verbose_name='Изображения', blank=True, null=True)
     description_short = models.CharField(max_length=250, verbose_name='Краткое описание')
     description_long = models.TextField(verbose_name='Полное описание')
     lat = models.FloatField(verbose_name='Широта')
@@ -15,3 +14,15 @@ class Places(models.Model):
     class Meta:
         verbose_name = 'Место'
         verbose_name_plural = 'Места'
+
+
+class Image(models.Model):
+    img = models.ImageField(upload_to='media/', verbose_name='Изображение')
+    places = models.ForeignKey(Places, verbose_name='Место', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.id} {self.places.title}'
+
+    class Meta:
+        verbose_name = 'Изображение'
+        verbose_name_plural = 'Изображения'
