@@ -17,7 +17,7 @@ class Places(models.Model):
 
 
 class Image(models.Model):
-    img = models.ImageField(upload_to='media/', verbose_name='Изображение')
+    img = models.ImageField(verbose_name='Изображение')
     places = models.ForeignKey(Places, verbose_name='Место', on_delete=models.CASCADE)
 
     def __str__(self):
