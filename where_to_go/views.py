@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from places.models import Places
+from django.urls import reverse
+from places.views import get_id_place
 
 
 def show_maps(request):
@@ -9,19 +11,21 @@ def show_maps(request):
     for place in places:
         place = {
                 "type": "Feature",
-                "geometry": {
-                "type": "Point",
-                "coordinates": [place.lng, place.lat]
+                "geometry":
+                {
+                 "type": "Point",
+                 "coordinates": [place.lng, place.lat]
                 },
                 "properties": {
-                "title": place.title,
-                "placeId": place.id,
-                "detailsUrl": "static/places/moscow_legends.json"
+                 "title": place.title,
+                 "placeId": place.id,
+                 "detailsUrl": reverse('places:place_details', kwargs={
+                                                        "place_id": place.id}),
                 }
                 }
         features.append(place)
 
-    data = {"maps" : {
+    data = {"maps": {
             "type": "FeatureCollection",
             "features": features
             }}

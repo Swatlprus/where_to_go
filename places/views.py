@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
@@ -24,4 +23,5 @@ def get_id_place(requests, place_id):
         }
 
     }
-    return JsonResponse(json, json_dumps_params={'indent': 2, 'ensure_ascii': False})
+    return JsonResponse(json, json_dumps_params={'indent': 2,
+                                                 'ensure_ascii': False})
