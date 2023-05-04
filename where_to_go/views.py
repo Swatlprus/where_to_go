@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from places.models import Places
 from django.urls import reverse
-from places.views import get_id_place
 
 
 def show_maps(request):

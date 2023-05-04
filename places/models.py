@@ -1,12 +1,13 @@
 from django.db import models
 from django.urls import reverse
+from tinymce.models import HTMLField
 
 
 class Places(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название')
     description_short = models.CharField(max_length=250,
                                          verbose_name='Краткое описание')
-    description_long = models.TextField(verbose_name='Полное описание')
+    description_long = HTMLField(verbose_name='Полное описание')
     lng = models.FloatField(verbose_name='Долгота')
     lat = models.FloatField(verbose_name='Широта')
 
