@@ -1,23 +1,28 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from PIL import Image
+from adminsortable2.admin import SortableInlineAdminMixin
+
 from .models import Places, Image
 
 
-class ImageInline(admin.TabularInline):
-    model = Image
-    readonly_fields = ["get_preview"]
+def get_preview(obj):
+    return format_html('<img src="{url}" style="max-width: 200px;\
+                       max-height: 200px;" />'.format(url=obj.img.url))
 
-    def get_preview(self, obj):
-        return format_html('<img src="{url}" width="{width}" height=200 />'
-                           .format(
-                                    url=obj.img.url,
-                                    width=(obj.img.width/(obj.img.height/200)),
-                                    ))
+
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
+    model = Image
+    readonly_fields = [get_preview]
+    extra = 1
 
 
 @admin.register(Places)
 class PlacesAdmin(admin.ModelAdmin):
-    inlines = [
-        ImageInline,
-    ]
+    inlines = [ImageInline]
+    search_fields = ['title']
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    readonly_fields = [get_preview]
