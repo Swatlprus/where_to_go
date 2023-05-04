@@ -31,7 +31,7 @@ SECRET_KEY = env('SECRET_KEY', 'q1ork*j8g#g4861__+3njkn3i4_xhy%c\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', False)
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', ['*'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 
 # Application definition
@@ -132,6 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+STATIC_ROOT = '/home/Swatlprus/swatlprus.pythonanywhere.com/assets/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
