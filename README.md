@@ -2,7 +2,7 @@
 
 Сайт показывает самые интересные места в Москве. 
 
-[Демка сайта](https://devmanorg.github.io/where-to-go-frontend/).
+[Демка сайта](http://swatlprus.pythonanywhere.com/).
 
 ## Подготовка к запуску
 
@@ -20,6 +20,17 @@ python3 -m venv venv
 ```shell
 pip3 install -r requirements.txt
 ```
+## Настройка переменных окружения
+
+Пример .env файла
+```
+SECRET_KEY=django-insecure-*9+eu5va4qprh3l8@\cdscdsfdsdssssn+%s0
+DEBUG=False
+ALLOWED_HOSTS='*'
+```
+SECRET_KEY - секретный Django-ключ
+DEBUG - Включить или выключить режим Debug (На проде всегда режим False)
+ALLOWED_HOSTS - Адрес хоста, где размещается сайт (Указывать в виде строки)
 
 ## Как запустить
 
