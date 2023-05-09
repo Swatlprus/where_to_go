@@ -18,10 +18,13 @@ def get_id_place(requests, place_id):
         "description_short": place.description_short,
         "description_long": place.description_long,
         "coordinates": {
-            "lat": place.lat,
-            "lng": place.lng,
+                    "lat": place.lat,
+                    "lng": place.lng,
         }
 
     }
-    return JsonResponse(json, json_dumps_params={'indent': 2,
-                                                 'ensure_ascii': False})
+    return JsonResponse(json, json_dumps_params={
+        'indent': 2,
+        'ensure_ascii': False,
+        }
+    )
