@@ -31,7 +31,7 @@ python3 manage.py migrate
 ```
 SECRET_KEY=django-insecure-*9+eu5va4qprh3l8@\cdscdsfdsdssssn+%s0
 DEBUG=False
-ALLOWED_HOSTS='*'
+ALLOWED_HOSTS='site.com'
 ```
 SECRET_KEY - секретный Django-ключ
 DEBUG - Включить или выключить режим Debug (На проде всегда режим False)
