@@ -13,15 +13,15 @@ class Places(models.Model):
     lng = models.FloatField(verbose_name='Долгота')
     lat = models.FloatField(verbose_name='Широта')
 
+    class Meta:
+        verbose_name = 'Место'
+        verbose_name_plural = 'Места'    
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('place.views.get_id_place', args=[str(self.id)])
-
-    class Meta:
-        verbose_name = 'Место'
-        verbose_name_plural = 'Места'
 
 
 class Image(models.Model):
@@ -38,10 +38,10 @@ class Image(models.Model):
         blank=True
     )
 
-    def __str__(self):
-        return f'{self.id} {self.places.title}'
-
     class Meta:
         ordering = ['position', ]
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения'
+
+    def __str__(self):
+        return f'{self.id} {self.places.title}'
