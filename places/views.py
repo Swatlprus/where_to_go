@@ -7,7 +7,7 @@ from .models import Places
 def get_desciptions_place(requests, place_id):
     place = get_object_or_404(Places, pk=place_id)
 
-    json = {
+    place_point = {
         "title": place.title,
         "imgs": [image.img.url for image in place.img.all()],
         "description_short": place.description_short,
@@ -18,7 +18,7 @@ def get_desciptions_place(requests, place_id):
         }
 
     }
-    return JsonResponse(json, json_dumps_params={
+    return JsonResponse(place_point, json_dumps_params={
         'indent': 2,
         'ensure_ascii': False,
         }

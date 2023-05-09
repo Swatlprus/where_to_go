@@ -21,7 +21,10 @@ class Places(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('place.views.get_desciptions_place', args=[str(self.id)])
+        return reverse(
+            'place.views.get_desciptions_place',
+            args=[str(self.id)]
+        )
 
 
 class Image(models.Model):
