@@ -16,10 +16,15 @@ git clone https://github.com/Padking/where-to-go.git
 ```shell
 python3 -m venv venv
 ```
-Для устаонвки зависимостей, используйте команду:
+Для установки зависимостей, используйте команду:
 ```shell
 pip3 install -r requirements.txt
 ```
+Перед первым запуском нужно провести миграции:
+```shell
+python3 manage.py migrate
+```
+
 ## Настройка переменных окружения
 
 Пример .env файла
