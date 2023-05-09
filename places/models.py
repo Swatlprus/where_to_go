@@ -15,13 +15,13 @@ class Places(models.Model):
 
     class Meta:
         verbose_name = 'Место'
-        verbose_name_plural = 'Места'    
+        verbose_name_plural = 'Места'
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('place.views.get_id_place', args=[str(self.id)])
+        return reverse('place.views.get_desciptions_place', args=[str(self.id)])
 
 
 class Image(models.Model):

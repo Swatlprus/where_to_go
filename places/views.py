@@ -1,20 +1,15 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from .models import Places, Image
+from .models import Places
 
 
-def get_id_place(requests, place_id):
+def get_desciptions_place(requests, place_id):
     place = get_object_or_404(Places, pk=place_id)
-    imgs = Image.objects.filter(places=place_id)
-    images = []
-    for img in imgs:
-        image = Image.objects.get(pk=img.pk)
-        images.append(image.img.url)
 
     json = {
         "title": place.title,
-        "imgs": images,
+        "imgs": [image.img.url for image in place.img.all()],
         "description_short": place.description_short,
         "description_long": place.description_long,
         "coordinates": {
