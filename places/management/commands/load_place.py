@@ -28,16 +28,18 @@ class Command(BaseCommand):
                                         'lng': place['coordinates']['lng'],
                                         'lat': place['coordinates']['lat'],
                                     })
-            if created:
-                for count, img_url in enumerate(place['imgs']):
-                    img_response = requests.get(img_url)
-                    img_response.raise_for_status()
+            if not created:
+                return
+            for count, img_url in enumerate(place['imgs']):
+                img_response = requests.get(img_url)
+                img_response.raise_for_status()
+                image_field, image_created = point_place.images.get_or_create(position=count)
 
-                    image_field, image_created = point_place.images.get_or_create(position=count)
-                    if image_created:
-                        image_field.img.save(os.path.basename(img_url),
-                                             ContentFile(img_response.content),
-                                             save=True)
+                if not image_created:
+                    return
+                image_field.img.save(os.path.basename(img_url),
+                                     ContentFile(img_response.content),
+                                     save=True)
 
         except MultipleObjectsReturned:
             print('Объект с такими данным уже существует.')
