@@ -9,7 +9,7 @@ def get_descriptions_place(requests, place_id):
 
     place_point = {
         'title': place.title,
-        'imgs': [image.img.url for image in place.img.all()],
+        'imgs': [image.img.url for image in place.images.all()],
         'description_short': place.description_short,
         'description_long': place.description_long,
         'coordinates': {
