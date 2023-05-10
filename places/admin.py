@@ -6,7 +6,7 @@ from .models import Places, Image
 
 
 def get_preview(obj):
-    return format_html('<img src="{obj.img.url}" style="max-width: 200px;\
+    return format_html('<img src="{Image.img.url}" style="max-width: 200px;\
                        max-height: 200px;" />')
 
 
