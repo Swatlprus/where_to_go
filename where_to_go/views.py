@@ -6,26 +6,22 @@ from django.urls import reverse
 def show_maps(request):
     places = Places.objects.all()
     features = []
-
     for place in places:
-        place = {
-                'type': 'Feature',
-                'geometry': {
-                        'type': 'Point',
-                        'coordinates': [place.lng, place.lat]
-                },
-                'properties': {
-                        'title': place.title,
-                        'placeId': place.id,
-                        'detailsUrl': reverse(
-                                'places:place_details',
-                                kwargs={'place_id': place.id}),
-                }
-        }
-        features.append(place)
+        features.append({
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [place.lng, place.lat]
+            },
+            'properties': {
+                'title': place.title,
+                'placeId': place.id,
+                'detailsUrl': reverse(
+                        'places:place_details',
+                        kwargs={'place_id': place.id}
+                        ),
+            }
+        })
 
-    data = {'maps': {
-                'type': 'FeatureCollection',
-                'features': features
-            }}
-    return render(request, 'index.html', context=data)
+    serialize = {'maps': {'type': 'FeatureCollection', 'features': features}}
+    return render(request, 'index.html', context=serialize)
