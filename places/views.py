@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from .models import Places
 
 
-def get_desciptions_place(requests, place_id):
+def get_descriptions_place(requests, place_id):
     place = get_object_or_404(Places, pk=place_id)
 
     place_point = {
