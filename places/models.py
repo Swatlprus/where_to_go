@@ -20,12 +20,6 @@ class Places(models.Model):
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse(
-            'place.views.get_desciptions_place',
-            args=[str(self.id)]
-        )
-
 
 class Image(models.Model):
     img = models.ImageField(verbose_name='Изображение')
