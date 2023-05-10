@@ -37,9 +37,8 @@ class Command(BaseCommand):
 
                 if not image_created:
                     return
-                image_field.img.save(os.path.basename(img_url),
-                                     ContentFile(img_response.content),
-                                     save=True)
+                name = ContentFile(img_response.content)
+                image_field.img.save(os.path.basename(img_url), name, save=True)
 
         except MultipleObjectsReturned:
             print('Объект с такими данным уже существует.')
