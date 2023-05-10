@@ -19,15 +19,15 @@ class Command(BaseCommand):
         url = options['url']
         geo_point = requests.get(unquote(url))
         place = geo_point.json()
-        print(place['title'])
         try:
             point_place, created = Places.objects.get_or_create(
                                     title=place['title'],
-                                    description_short=place['description_short'],
-                                    description_long=place['description_long'],
-                                    lng=place['coordinates']['lng'],
-                                    lat=place['coordinates']['lat']
-                                    )
+                                    defaults={
+                                        'description_short': place['description_short'],
+                                        'description_long': place['description_long'],
+                                        'lng': place['coordinates']['lng'],
+                                        'lat': place['coordinates']['lat'],
+                                    })
             if created:
                 for count, img_url in enumerate(place['imgs']):
                     img_response = requests.get(img_url)
