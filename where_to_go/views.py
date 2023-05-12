@@ -16,10 +16,7 @@ def show_maps(request):
             'properties': {
                 'title': place.title,
                 'placeId': place.id,
-                'detailsUrl': reverse(
-                        'places:place_details',
-                        kwargs={'place_id': place.id}
-                        ),
+                'detailsUrl': reverse('places:place_details', kwargs={'place_id': place.id}),
             }
         })
 
