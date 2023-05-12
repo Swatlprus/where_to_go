@@ -27,7 +27,8 @@ class Command(BaseCommand):
                                         'description_long': place['description_long'],
                                         'lng': place['coordinates']['lng'],
                                         'lat': place['coordinates']['lat'],
-                                    })
+                                    },
+            )
             if not created:
                 return
             for count, img_url in enumerate(place['imgs']):
