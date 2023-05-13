@@ -34,7 +34,7 @@ class Command(BaseCommand):
             for count, img_url in enumerate(place['imgs']):
                 img_response = requests.get(img_url)
                 img_response.raise_for_status()
-                image_field, image_created = point_place.images.get_or_create(position=count)
+                image_field, image_created = point_place.images.create(position=count)
 
                 if not image_created:
                     return
