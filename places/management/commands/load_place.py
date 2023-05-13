@@ -42,4 +42,4 @@ class Command(BaseCommand):
                 image_field.img.save(name, save=True)
 
         except MultipleObjectsReturned:
-            print('Объект с такими данным уже существует.')
+            print('Объектов с такими данными несколько.')
