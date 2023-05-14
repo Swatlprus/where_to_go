@@ -22,12 +22,12 @@ class Command(BaseCommand):
         try:
             point_place, created = Places.objects.get_or_create(
                                     title=place['title'],
+                                    lng=place['coordinates']['lng'],
+                                    lat=place['coordinates']['lat'],
                                     defaults={
-                                        'description_short': place['description_short'],
-                                        'description_long': place['description_long'],
-                                        'lng': place['coordinates']['lng'],
-                                        'lat': place['coordinates']['lat'],
-                                    },
+                                        'description_short': place.get('description_short', ''),
+                                        'description_long': place.get('description_long', ''),
+                                    }
             )
             if not created:
                 return
