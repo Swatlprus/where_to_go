@@ -6,8 +6,10 @@ from .models import Places, Image
 
 
 def get_preview(Image):
-    return format_html('<img src="{url}" style="max-width: 200px;\
-                       max-height: 200px;" />'.format(url=Image.img.url))
+    return format_html(
+        '<img src="{url}" style="max-width: 200px; max-height: 200px;" />'
+        .format(url=Image.img.url)
+    )
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
