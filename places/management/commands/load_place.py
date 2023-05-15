@@ -21,25 +21,27 @@ class Command(BaseCommand):
         place = geo_point.json()
         try:
             point_place, created = Places.objects.get_or_create(
-                                    title=place['title'],
-                                    lng=place['coordinates']['lng'],
-                                    lat=place['coordinates']['lat'],
-                                    defaults={
-                                        'description_short': place.get('description_short', ''),
-                                        'description_long': place.get('description_long', ''),
-                                    }
+                title=place['title'],
+                lng=place['coordinates']['lng'],
+                lat=place['coordinates']['lat'],
+                defaults={
+                    'description_short': place.get('description_short', ''),
+                    'description_long': place.get('description_long', ''),
+                }
             )
             if not created:
                 return
             for count, img_url in enumerate(place['imgs']):
                 img_response = requests.get(img_url)
                 img_response.raise_for_status()
-                image_field, image_created = point_place.images.create(position=count)
-
-                if not image_created:
-                    return
-                name = ContentFile(img_response.content, os.path.basename(img_url))
-                image_field.img.save(name, save=True)
-
+                content_file = ContentFile(
+                    img_response.content,
+                    name=os.path.basename(img_url)
+                )
+                image_field = point_place.images.create(
+                    place=point_place,
+                    img=content_file,
+                    position=count
+                )
         except MultipleObjectsReturned:
             print('Объектов с такими данными несколько.')
