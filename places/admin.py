@@ -5,10 +5,10 @@ from adminsortable2.admin import SortableInlineAdminMixin
 from .models import Places, Image
 
 
-def get_preview(Image):
+def get_preview(image):
     return format_html(
-        '<img src="{url}" style="max-width: 200px; max-height: 200px;" />'
-        .format(url=Image.img.url)
+        '<img src="{}" style="max-width: 200px; max-height: 200px;" />',
+        image.img.url
     )
 
 
