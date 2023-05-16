@@ -39,7 +39,7 @@ class Command(BaseCommand):
                     name=os.path.basename(img_url)
                 )
                 point_place.images.create(
-                    place=point_place,
+                    places=point_place,
                     img=content_file,
                     position=count
                 )
