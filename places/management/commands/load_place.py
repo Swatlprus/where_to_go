@@ -38,7 +38,7 @@ class Command(BaseCommand):
                     img_response.content,
                     name=os.path.basename(img_url)
                 )
-                image_field = point_place.images.create(
+                point_place.images.create(
                     place=point_place,
                     img=content_file,
                     position=count
